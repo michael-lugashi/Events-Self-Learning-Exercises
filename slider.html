@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <style>
+      .slider {
+        border-radius: 5px;
+        /* background: #E0E0E0; */
+        background: linear-gradient(to right, #e0e0e0, #cf3737);
+        width: 310px;
+        height: 15px;
+        margin: 5px;
+      }
+
+      .thumb {
+        width: 10px;
+        height: 25px;
+        border-radius: 3px;
+        position: relative;
+        /* position: absolute; */
+        left: 10px;
+        top: -5px;
+        background: blue;
+        cursor: pointer;
+      }
+    </style>
+  </head>
+
+  <body>
+    <div id="slider" class="slider">
+      <div class="thumb" id="sliding"></div>
+    </div>
+
+    <script>
+      // ...your code...
+      // mousedown adds the even listener which then moves sliding
+      sliding.onmousedown = () => {
+        event.preventDefault();
+        // I add the event to the document so I don't have to stay in the element to slide.
+        document.addEventListener('mousemove', positonChange);
+      };
+      
+      //   mouse up makes it stop moving
+      document.onmouseup = () => {
+        document.removeEventListener('mousemove', positonChange);
+      };
+
+      function positonChange(event) {
+        // getting rid of browsers default dragging
+        // sliding.ondragstart = () => false;
+        // dont need it here though I'm leavint it for refernce.
+
+        // the positioning I want sliding to go
+        let leftPostioning =
+          event.x -
+          sliding.offsetWidth / 2 -
+          slider.getBoundingClientRect().left;
+
+        // I check that the slider does not go over the boundaries
+        const rightBoundary = slider.offsetWidth - sliding.offsetWidth;
+        leftPostioning = leftPostioning < 0 ? 0 : leftPostioning;
+        leftPostioning =
+          leftPostioning > rightBoundary ? rightBoundary : leftPostioning;
+
+        // I set the left postioning
+        sliding.style.left = leftPostioning + 'px';
+      }
+    </script>
+  </body>
+</html>
