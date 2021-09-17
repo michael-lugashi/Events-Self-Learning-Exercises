@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <style>
+      .hours {
+        color: red;
+      }
+
+      body {
+        margin: 0;
+      }
+
+      .minutes {
+        color: green;
+      }
+
+      .seconds {
+        color: blue;
+      }
+
+      .clock {
+        border: 1px dashed black;
+        padding: 5px;
+        display: inline-block;
+        background: yellow;
+        position: absolute;
+        left: 0;
+        top: 0;
+      }
+
+      #tooltip {
+        position: absolute;
+        top: 30px;
+        left: 0;
+        padding: 10px 20px;
+        border: 1px solid #b3c9ce;
+        border-radius: 4px;
+        text-align: center;
+        font: italic 14px/1.3 sans-serif;
+        color: #333;
+        background: #fff;
+        z-index: 100000;
+        box-shadow: 3px 3px 3px rgba(0, 0, 0, 0.3);
+      }
+    </style>
+  </head>
+
+  <body>
+    <div id="elem" class="clock">
+      <span class="hours">12</span> : <span class="minutes">30</span> :
+      <span class="seconds">00</span>
+      <div id="tooltip" hidden>Tooltip</div>
+    </div>
+
+    <!-- <div id="tooltip" hidden>Tooltip</div> -->
+
+    <script>
+      // This variable will decide if the tooltip Hidden function will be completed.
+      let inOrOut;
+
+      elem.onmouseenter = () => {
+        inOrOut = true;
+        // so the tooltip does not display immedietly
+        setTimeout(tooltipHidden, 500);
+      };
+
+      elem.onmouseleave = () => {
+        inOrOut = false;
+
+        tooltip.hidden = true;
+      };
+      
+      //if mouseleave event has occured the tool tip will not display.
+      function tooltipHidden() {
+        if (!inOrOut) return;
+        tooltip.hidden = false;
+      }
+    </script>
+  </body>
+</html>
