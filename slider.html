@@ -27,9 +27,9 @@
   </head>
 
   <body>
-    <div id="slider" class="slider">
-      <div class="thumb" id="sliding"></div>
-    </div>
+    <ul id="slider" class="slider">
+      <li class="thumb" id="sliding"></li>
+    </ul>
 
     <script>
       // ...your code...
@@ -60,7 +60,7 @@
         const rightBoundary = slider.offsetWidth - sliding.offsetWidth;
         leftPostioning = leftPostioning < 0 ? 0 : leftPostioning;
         leftPostioning =
-          leftPostioning > rightBoundary ? rightBoundary : leftPostioning;
+          // leftPostioning > rightBoundary ? rightBoundary : leftPostioning;
 
         // I set the left postioning
         sliding.style.left = leftPostioning + 'px';
